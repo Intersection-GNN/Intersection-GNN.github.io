@@ -20,7 +20,7 @@
 
 
   <title>Intersection Safety Modeling Using Semantic Scene Graph and Graph Neural Network</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="static/images/sceneGraph.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -89,14 +89,8 @@
                   </a>
                 </span>
 
-<<<<<<< HEAD
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://github.com/VTTI/driver-secondary-action-recognition" target="_blank"
-=======
                 <span class="link-block">
                   <a href="https://github.com/VTTI/GNN-based-intersection-safety" target="_blank"
->>>>>>> updated_site
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -104,10 +98,6 @@
                     <span>GitHub</span>
                   </a>
                 </span>
-<<<<<<< HEAD
-=======
-
->>>>>>> updated_site
               </div>
             </div>
       </div>
@@ -176,9 +166,6 @@
         <div class="content">
           <h2 class="title is-3">Method</h2>
 
-<<<<<<< HEAD
-          <h3 class="title is-4">Video Swin-B Transformer</h3>
-=======
           <h3 class="title is-4">Traffic Participant Detection and Tracking</h3>
 
 
@@ -220,40 +207,11 @@
           </div> -->
 
           <h3 class="title is-4">Homography Transformation</h3>
->>>>>>> updated_site
           <center>
           <img src="static/images/homography.png" alt="Workflow" width="800" height="480"/>
           </center>
           <div class="level-set has-text-justified">
             <p>
-<<<<<<< HEAD
-               Our model is based on the Video Swin Transformer, a spatiotemporal extension of the Swin Transformer 
-               designed for video understanding tasks such as action recognition. We use the Swin-B (Base) variant 
-               for a strong balance between accuracy and computational efficiency, initialized with weights pre-trained 
-               on the Kinetics-400 dataset. The architecture processes videos as 3D patches and applies window-based 
-               and shifted window self-attention across four hierarchical stages to capture both spatial and temporal context. 
-              The pre-trained classifier is replaced and the entire network is fine-tuned on our dataset for the task of video classification. 
-            </p>
-          </div>
-
-          <h3 class="title is-4">Visual Dictionary for Human Action</h3>
-          <center>
-          <img src="static/images/vdha.png" alt="Visual Dictionary for Human Action"/>
-          </center>
-          <div class="level-set has-text-justified">
-            <p>
-              We build on the concept of the Visual Dictionary of Human Action (VDHA) to represent complex human activities 
-              as structured combinations of interpretable visual attributes. VDHA models an action as a unique signature 
-              composed of micro-actions (e.g., head, hand, and mouth movements), spatial relations between body parts 
-              (e.g., body and head pose, face–hand distance), and interactions with surrounding objects (e.g., hands on the wheel, 
-              object presence). For driving scenarios, these attributes distinguish secondary behaviors from normal driving actions 
-              using simple semantic values (Yes/No/Maybe), enabling systematic definition and analysis of fine-grained behaviors. 
-              This structured representation supports automated discovery and interpretability, and helps explain where and why the 
-              model attends to specific regions and frames when recognizing actions.
-            </p>
-          </div>
-
-=======
               Pixel-to-GPS conversion maps camera image coordinates to geographic space by matching multiple image landmarks 
               with known locations in Google Earth and estimating a homography. This further helps in transforming traffic participant
               coordinates from the camera to GPS coordinates.
@@ -267,13 +225,12 @@
           </center>
           <div class="level-set has-text-justified">
             <p>
-              We convert unconstrained road layouts into structured node graphs by decomposing road segments into lanelets, 
-              where each lanelet represents a single drivable lane with defined left and right boundaries labeled as either virtual 
-              (between lanes) or road boundaries (between road and non-road regions). Road maps are created using OpenStreetMap and 
-              processed with the Lanelet2 library, which incorporates both geometric and semantic traffic rules. Lanelets are overlaid 
-              on aerial imagery from Bing Maps for visualization, and the road structure is modeled as subgraphs capturing lanes, crosswalks, 
-              and intersections, with connectivity encoded in a matrix to unify static road elements and dynamic agents within a graph-based 
-              traffic representation.
+              We convert unconstrained road layouts into structured node graphs by decomposing road segments into lanelets, where each lanelet 
+              represents a single drivable lane with boundaries labeled as virtual (between lanes) or road boundaries (between road and non-road areas). 
+              Maps are created using OpenStreetMap and processed with Lanelet2, incorporating both geometric and semantic traffic rules, with visualization 
+              over aerial imagery from Bing Maps. The resulting graph models lanes, crosswalks, and intersections as subgraphs connected through three edge types: 
+              <span style="color: red;">consecutive</span> (unidirectional, sequential flow), <span style="color: blue;">adjacent</span> (bidirectional, neighboring lanes), 
+              and <span style="color: green;">overlapping</span> (bidirectional, intersecting segments), enabling a unified representation of static infrastructure and dynamic traffic agents.
             </p>
           </div>
 
@@ -281,37 +238,26 @@
           <center>
           <img src="static/images/sceneGraph.png" alt="sceneGraph" width="1000" height="600"/>
           </center>
+          <div class="level-set has-text-justified">
+            <p>
+              Each traffic participant in the sematic scene graph is represented as a single node, even if multiple projections exist. 
+              Relationships between participants are inferred from paths in the road graph: a path composed entirely of consecutive edges 
+              defines a <span style="color: red;">longitudinal</span> relation (same-lane following). If the path contains exactly one adjacent edge, 
+              the relation is labeled <span style="color: blue;">lateral</span>, indicating vehicles in neighboring lanes. An <span style="color: green;">intersecting</span> relation 
+              is defined when the path includes exactly one overlapping edge, representing merging or crossing lanes, with subsequent edges reversed to 
+              maintain directionality. This graph-based formulation systematically captures spatial interactions between traffic participants.
+            </p>
+          </div>
 
           <h3 class="title is-4">Workflow</h3>
           <center>
           <img src="static/images/workflow.png" alt="Workflow" width="1000" height="600"/>
           </center>
-
->>>>>>> updated_site
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section hero is-small is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <div class="content">
-<<<<<<< HEAD
-          <h2 class="title is-3">Dataset</h2>
-
-          <center>
-          <img src="static/images/dataset.png" alt="Video Swin-B Transformer" width="600" height="360"/>
-          </center>
-          <div class="level-set has-text-justified">
+                    <div class="level-set has-text-justified">
             <p>
-              We evaluate our approach on two datasets- VTTIMLP01 (VTTI Machine Learning Pose) is an RGB video dataset captured in a 
-              controlled testing facility at 640×480 resolution using a single camera setup; SHRP2 (Stragetic Highway Research Program) 
-              is a large-scale, real-world driving dataset collected from over 3,000 vehicles with unconstrained camera extrinsics. 
-              The face-view videos in SHRP2 are grayscale and low resolution (320×240), making recognition significantly more challenging. 
+              Safety metrics are computed for each frame and used to assign a binary label (risky or non-risky), providing supervision for training the graph neural network. 
+              The model then performs scene classification by learning from the semantic scene graph representation of each frame. The workflow diagram summarizes the entire 
+              pipeline, illustrating the flow from camera feed to final risk score prediction.
             </p>
           </div>
 
@@ -328,94 +274,27 @@
       <div class="column is-full">
         <div class="content">
           <h2 class="title is-3">Results</h2>
-
-          <h3 class="title is-4">Top-1 and Top-3 Accuracy</h3>
-          <center>
-          <img src="static/images/accuracy.png" alt="Video Swin-B Transformer" width="750" height="450"/>
-          </center>
-          <div class="level-set has-text-justified">
-            <p>
-               The Top-1 and Top-3 accuracy for all the models
-              on SHRP2 and VTTIMLP01 datasets are summarized. 
-              Since the number of classes is at most 10 in either dataset,
-              we chose to use the Top-3 accuracy metric instead of the
-              commonly used Top-5 accuracy. It can be seen that Video
-              Swin has a Top-1 performance that is better or comparable to
-              state-of-the-art CNNs, while the Top-3 accuracy is better in
-              all cases.
-            </p>
-          </div>
-
-          <h3 class="title is-4">Explainable Action Recognition</h3>
-
-          <div class="level-set has-text-justified">
-            <p>
-              Vision transformers preserve spatial and low-level visual features in early layers, 
-              similar to CNNs, and progressively aggregate higher-level semantic information in deeper layers. 
-              By the final stage, the model captures global context for classification, analogous to global pooling in CNNs. 
-              Attention maps across layers visualize this progression, highlighting highly attended regions with warm colors 
-              and less relevant areas with cool colors.
-            </p>
-          </div>
-
-          <div style="margin: 2rem 0;"></div>
-=======
-          <h2 class="title is-3">Results</h2>
->>>>>>> updated_site
 
           <h3 class="title is-4">Accuracy</h3>
           <center>
           <img src="static/images/accuracy.png" alt="Accuracy" width="750" height="450"/>
           </center>
-          <!-- <div class="level-set has-text-justified">
+          <div class="level-set has-text-justified">
             <p>
-<<<<<<< HEAD
-              Above figure illustrates attention across multiple channels for a single frame labeled cellphone talking. 
-              Different channels focus on complementary cues: face and hand proximity with mouth/head motion, 
-              the hand–phone interaction indicating object presence and one-hand usage, and the steering wheel 
-              region to infer whether a hand is off the wheel. Other channels attend to upper-body joints and 
-              torso keypoints to capture body pose, highlighting how the model combines object interaction and 
-              pose cues to recognize distracted driving behavior.
-=======
-               The Top-1 and Top-3 accuracy for all the models
-              on SHRP2 and VTTIMLP01 datasets are summarized. 
-              Since the number of classes is at most 10 in either dataset,
-              we chose to use the Top-3 accuracy metric instead of the
-              commonly used Top-5 accuracy. It can be seen that Video
-              Swin has a Top-1 performance that is better or comparable to
-              state-of-the-art CNNs, while the Top-3 accuracy is better in
-              all cases.
->>>>>>> updated_site
+              Comparison of performance on the VT-CAST 2020 dataset against two state-of-the-art GNN-based methods
             </p>
-          </div> -->
+          </div>
 
           <h3 class="title is-4">Confusion Matrix</h3>
           <center>
           <img src="static/images/confusion.png" alt="Confusion Matrix" width="500" height="300"/>
           </center>
-          <!-- <div class="level-set has-text-justified">
+          <div class="level-set has-text-justified">
             <p>
-<<<<<<< HEAD
-              Left to right: Temporal variation in attention for a single network channel as the driver finishes 
-              eating and reaches for the bag of chips. Initially, the model focuses 
-              on the mouth and hand regions and classifies the action as eating due to visible mouth movement. 
-              As time progresses, attention shifts toward the hands as the driver reaches for a packet of chips, leading the model 
-              to reclassify the action as reaching in the absence of mouth motion. The model also attends to parts of the steering wheel, 
-              indicating that it is assessing whether the driver’s hand is on or off the wheel.
+              Confusion matrix for the GINEConv method evaluated on the VT-CAST 2020 Dataset. The ground truth labels 
+              are on the horizontal axis, and the predicted labels are on the vertical axis
             </p>
           </div>
-=======
-               The Top-1 and Top-3 accuracy for all the models
-              on SHRP2 and VTTIMLP01 datasets are summarized. 
-              Since the number of classes is at most 10 in either dataset,
-              we chose to use the Top-3 accuracy metric instead of the
-              commonly used Top-5 accuracy. It can be seen that Video
-              Swin has a Top-1 performance that is better or comparable to
-              state-of-the-art CNNs, while the Top-3 accuracy is better in
-              all cases.
-            </p>
-          </div> -->
->>>>>>> updated_site
 
         </div>
       </div>
@@ -447,9 +326,7 @@
 <section class="section" id="Acknowledgements">
   <div class="container is-max-desktop content">
     <h2 class="title">Acknowledgements</h2>
-      The authors would like to thank Calvin Winkowski, Stuart
-      Walker, and other members of Virginia Tech Transportation
-      Institute for their help in accessing the datasets. 
+      The authors would like to thank Safe-D UTC for partially funding this project
   </div>
 </section>
 <!--End Acknowledgements -->
